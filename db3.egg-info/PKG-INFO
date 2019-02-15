@@ -1,0 +1,22 @@
+Metadata-Version: 1.2
+Name: db3
+Version: 0.0.1
+Summary: Python 3 client for SSDB
+Home-page: https://github.com/daiooo/db3
+Author: daiooo
+Author-email: daiooo@dai3.com
+Maintainer: daiooo
+Maintainer-email: daiooo@dai3.com
+License: UNKNOWN
+Description: # db3
+        ssdb Python 3
+        
+Keywords: SSDB
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.7

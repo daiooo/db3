@@ -1,7 +1,4 @@
-# _*_ coding:utf-8 _*_
-a = [1, 5, 6, 'a', 'c', 'b']
-d=dict()
-for i in a:
-    d[i]=i
-print(d)
-print(d.keys())
+import ssdb  # db3
+
+db = ssdb.Client(host='d', port=10000)
+print(db.hset(1, 1, 1))

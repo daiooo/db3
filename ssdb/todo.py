@@ -11,7 +11,7 @@ class Base(PY_SSDB_Client):
         try:
             connection.send(cmd, *args)
             data = connection.recv()
-            print(f'cmd={cmd:<10} recv={type(data).__name__}:{str(data):<10} args={args}')
+            # print(f'cmd={cmd:<10} recv={type(data).__name__}:{str(data):<10} args={args}')
         except Exception as e:
             self.connection_pool.release(connection, error=True)
             raise e

@@ -17,5 +17,5 @@ class Client(HashMap, KV, ZHash, Queue):
     pass
 
 
-__version__ = '0.0.3'
+__version__ = '0.0.4'
 VERSION = tuple(map(int, __version__.split('.')))

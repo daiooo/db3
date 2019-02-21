@@ -76,12 +76,16 @@ class HashMap(Base):
         """
         return self.execute_command('hclear', c(name))
 
-    def multi_hset(self, n1, kvs: dict):
+    def multi_hset(self, name, kvs: dict):
         assert kvs, 'kvs is empty?'
-        return self.execute_command('multi_hset', c(n1), *dict_to_list(kvs))
+        return self.execute_command('multi_hset', c(name), *dict_to_list(kvs))
 
-    def multi_hget(self, n1, keys: list):
-        return list_to_dict(self.execute_command('multi_hget', c(n1), *keys))
+    def multi_hget(self, name, keys: list):
+        return list_to_dict(self.execute_command('multi_hget', c(name), *keys))
 
-    def multi_hdel(self, n1, keys: list) -> int:
-        return self.execute_command('multi_hdel', c(n1), *keys)
+    def multi_hdel(self, name, keys: list) -> int:
+        return self.execute_command('multi_hdel', c(name), *keys)
+
+    hset_multi = multi_hset
+    hget_multi = multi_hget
+    hdel_multi = multi_hdel

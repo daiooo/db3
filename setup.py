@@ -9,7 +9,6 @@ try:
 except ImportError:
     from distutils.core import setup
 
-
 setup(
     name='db3',
     version=__version__,
@@ -24,6 +23,7 @@ setup(
     include_package_data=True,
     keywords=['SSDB'],
     # license='BSD-2',
+    install_requires=['pyssdb'],  # 依赖模块
     packages=['ssdb'],
     classifiers=[
         'Development Status :: 5 - Production/Stable',

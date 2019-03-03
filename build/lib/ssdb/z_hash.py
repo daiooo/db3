@@ -15,12 +15,15 @@ class ZHash(Base):
     def zdel(self, name, key):
         return self.execute_command('zdel', c(name), c(key))
 
-    def zincr(self, name, key, num: int = 1):
+    def zincr(self, name, key, num: int = 1, digit: int = 0):
         """
         返回新的值.
         使 zset 中的 key 对应的值增加 num. 参数 num 可以为负数. 如果原来的值不是整数(字符串形式的整数), 它会被先转换成整数.
+        digit 为了 id 生成 多少位的数字， 不够就 加
         """
-        return self.execute_command('zincr', c(name), c(key), int(num))
+        v = self.execute_command('zincr', c(name), c(key), int(num))
+        v = self.execute_command('zincr', c(name), c(key), 10 ** (digit - 1)) if digit and v < 10 ** (digit - 1) else v
+        return v
 
     def zexists(self, name, key) -> int:
         """
@@ -69,10 +72,10 @@ class ZHash(Base):
 
     def multi_zset(self, n1, kvs: dict):
         assert kvs, 'kvs is empty?'
-        return self.execute_command('multi_zset', c(n1), *dict_to_list(kvs))
+        return self.execute_command('multi_zset', c(n1), *dict_to_list(kvs)) if kvs else 0
 
     def multi_zget(self, n1, keys: list):
-        return list_to_dict(self.execute_command('multi_zget', c(n1), *keys),'z')
+        return list_to_dict(self.execute_command('multi_zget', c(n1), *keys), 'z') if keys else {}
 
     def multi_zdel(self, n1, keys: list) -> int:
-        return self.execute_command('multi_zdel', c(n1), *keys)
+        return self.execute_command('multi_zdel', c(n1), *keys) if keys else 0

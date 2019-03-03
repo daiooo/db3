@@ -1,8 +1,9 @@
+### v0.06
+* add: zincr + digit
+
+### v0.0.5
+* bug: if kvs={}  > *kvs error
+
 ### v0.0.4
 * hash n1 > name
-* hash 
-```bash
-hset_multi = multi_hset
-hget_multi = multi_hget
-hdel_multi = multi_hdel
-```
+* hash add hset_multi hget_multi hdel_multi

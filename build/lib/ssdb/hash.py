@@ -49,7 +49,7 @@ class HashMap(Base):
         key_start, key_end = deal_start_end(key_start, key_end)
         return bytes_to_str(self.execute_command('hkeys', c(name), key_start, key_end, check_limit(limit)))
 
-    def hgetall(self, name):
+    def hgetall(self, name) -> dict:
         x = self.execute_command('hgetall', c(name))
         return list_to_dict(x)
 
@@ -78,13 +78,13 @@ class HashMap(Base):
 
     def multi_hset(self, name, kvs: dict):
         assert kvs, 'kvs is empty?'
-        return self.execute_command('multi_hset', c(name), *dict_to_list(kvs))
+        return self.execute_command('multi_hset', c(name), *dict_to_list(kvs)) if kvs else 0
 
     def multi_hget(self, name, keys: list):
-        return list_to_dict(self.execute_command('multi_hget', c(name), *keys))
+        return list_to_dict(self.execute_command('multi_hget', c(name), *keys)) if keys else {}
 
     def multi_hdel(self, name, keys: list) -> int:
-        return self.execute_command('multi_hdel', c(name), *keys)
+        return self.execute_command('multi_hdel', c(name), *keys) if keys else 0
 
     hset_multi = multi_hset
     hget_multi = multi_hget

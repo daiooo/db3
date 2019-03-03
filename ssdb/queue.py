@@ -20,3 +20,14 @@ class Queue(Base):
         :return: 清空队列的长度
         """
         return int(self.execute_command('qclear', c(name)))
+
+    def qrange(self, name, offset: int = 0, limit: int = 0) -> list:
+        """
+        返回下标处于区域 [offset, offset + limit] 的元素.
+        :param name: queue 的名字.
+        :param offset: 整数, 从此下标处开始返回. 从 0 开始. 可以是负数, 表示从末尾算起.
+        :param limit:
+        :return:
+        """
+        x = self.execute_command('qrange', c(name), offset, check_limit(limit))
+        return [pickle_loads(_) for _ in x]

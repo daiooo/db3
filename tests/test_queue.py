@@ -24,3 +24,9 @@ class TestGetSet(TestCase):
         self.assertEqual(2, self.db.qsize(n1))
         self.db.qclear(n1)
         self.assertEqual(0, self.db.qsize(n1))
+
+    def test_qrange(self):
+        self.db.qclear(n1)
+        self.db.qpush(n1, i1)
+        self.db.qpush(n1, i2)
+        self.assertEqual([i1, i2], self.db.qrange(n1))

@@ -26,11 +26,16 @@ class TestGetSet(TestCase):
         self.assertIsInstance(self.db.zdel(n1, k1), int)
         self.assertEqual(0, self.db.zexists(n1, k1))
 
-    def test_hincr(self):
+    def test_zincr(self):
         self.db.zdel(n1, k1)
         self.assertEqual(1, self.db.zincr(n1, k1))
         self.assertEqual(1 + 5, self.db.zincr(n1, k1, 5))
         self.assertEqual(1 + 5 - 5, self.db.zincr(n1, k1, -5))
+        # digit
+        self.db.zdel(n1, k1)
+        self.assertEqual(10 ** (5 - 1) + 1, self.db.zincr(n1, k1, digit=5))  # 10001
+        self.assertEqual(10 ** (5 - 1) + 2, self.db.zincr(n1, k1, digit=5))
+        self.assertEqual(10 ** (5 - 1) + 3, self.db.zincr(n1, k1, digit=5))
 
     def test_zexists(self):
         self.db.zdel(n1, k1)

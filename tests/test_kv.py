@@ -105,9 +105,13 @@ class TestGetSet(TestCase):
         # set
         kvs = {'mm1a': 'x1', 'mm1b': {'x2': 'x2', 'x3': [1, .2]}}
         self.assertIsInstance(self.db.multi_set(kvs), int)
+        self.assertIsInstance(self.db.multi_set({}), int)
         # get
         self.assertEqual(list(kvs.values()), self.db.multi_get(kvs))
         self.assertEqual(kvs, self.db.multi_get(kvs, r='d'))
+        print(self.db.multi_get([]))
+        print(self.db.multi_get([], r='d'))
         # del
         self.assertIsInstance(self.db.multi_del(kvs.keys()), int)
+        self.assertIsInstance(self.db.multi_del([]), int)
         self.assertEqual([], self.db.multi_get(kvs))

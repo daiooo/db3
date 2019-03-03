@@ -126,11 +126,11 @@ class KV(Base):
         return x[::-1] if r == 'v' else x
 
     def multi_set(self, kvs):  # 出错则返回 false, 其它值表示正常.
-        return self.execute_command('multi_set', *dict_to_list(kvs))
+        return self.execute_command('multi_set', *dict_to_list(kvs)) if kvs else 0
 
     def multi_get(self, keys, r='v'):  # 返回包含 key-value 的关联数组, 如果某个 key 不存在, 则它不会出现在返回数组中.
-        x = list_to_dict(self.execute_command('multi_get', *keys))
+        x = list_to_dict(self.execute_command('multi_get', *keys)) if keys else {}
         return list(x.values()) if r == 'v' else x
 
     def multi_del(self, keys) -> int:  # 出错则返回 false, 其它值表示正常.
-        return self.execute_command('multi_del', *keys)
+        return self.execute_command('multi_del', *keys) if keys else 0

@@ -1,4 +1,13 @@
-### v0.06
+### v0.1.0
+* add: hset_list
+
+### v0.0.9
+* add: qslice
+
+### v0.0.8
+* add: qget
+
+### v0.0.6
 * add: zincr + digit
 
 ### v0.0.5

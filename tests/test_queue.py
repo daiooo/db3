@@ -30,3 +30,10 @@ class TestGetSet(TestCase):
         self.db.qpush(n1, i1)
         self.db.qpush(n1, i2)
         self.assertEqual([i1, i2], self.db.qrange(n1))
+
+    def test_qslice(self):
+        self.db.qclear(n1)
+        self.db.qpush(n1, i1)
+        self.db.qpush(n1, i2)
+        print(self.db.qslice(n1))
+        self.assertEqual([i1, i2], self.db.qslice(n1))

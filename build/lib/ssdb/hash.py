@@ -12,7 +12,7 @@ class HashMap(Base):
         return self.execute_command('hset', c(name), c(key), pickle_dumps(value))
 
     def hget(self, name, key):
-        return pickle_loads(self.execute_command('hget', c(name), c(key)))
+        return pickle_loads(self.execute_command('hget', c(name), c(key))) if key else None
 
     def hdel(self, name, key):
         """如果出错则返回 false, 其它值表示正常. 你无法通过返回值来判断被删除的 key 是否存在."""
@@ -74,10 +74,10 @@ class HashMap(Base):
         """
         :return: delete key number
         """
-        return self.execute_command('hclear', c(name))
+        return int(self.execute_command('hclear', c(name)))
 
     def multi_hset(self, name, kvs: dict):
-        assert kvs, 'kvs is empty?'
+        # assert kvs, 'kvs is empty?'
         return self.execute_command('multi_hset', c(name), *dict_to_list(kvs)) if kvs else 0
 
     def multi_hget(self, name, keys: list):

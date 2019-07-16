@@ -25,7 +25,7 @@ class HashMap(Base):
         return self.execute_command('hset', c(name), c(key), pickle_dumps(value))
 
     def hget(self, name, key):
-        return pickle_loads(self.execute_command('hget', c(name), c(key))) if key else None
+        return pickle_loads(self.execute_command('hget', c(name), c(key))) if c(key) else None
 
     def hdel(self, name, key):
         """如果出错则返回 false, 其它值表示正常. 你无法通过返回值来判断被删除的 key 是否存在."""

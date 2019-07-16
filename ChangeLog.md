@@ -1,4 +1,7 @@
-### v0.1.0
+### v0.0.11
+* change: [hset] key > c(key)
+
+### v0.0.10
 * add: hset_list
 
 ### v0.0.9

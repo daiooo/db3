@@ -8,12 +8,14 @@ try:
     from setuptools import setup
 except ImportError:
     from distutils.core import setup
-
+with open("README.md", "r") as fh:
+    long_description = fh.read()
 setup(
     name='db3',
     version=__version__,
     description='Python 3 client for SSDB',
-    long_description=open('README.md').read(),
+    long_description=long_description,
+    long_description_content_type="text/markdown",
     url='https://github.com/daiooo/db3',
     author='daiooo',
     author_email='daiooo@dai3.com',

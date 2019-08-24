@@ -29,7 +29,8 @@ class HashMap(Base):
 
     def hdel(self, name, key):
         """如果出错则返回 false, 其它值表示正常. 你无法通过返回值来判断被删除的 key 是否存在."""
-        return self.execute_command('hdel', c(name), c(key))
+        if key:
+            return self.execute_command('hdel', c(name), c(key))
 
     def hincr(self, name, key, num: int = 1):
         """返回新的值."""
@@ -39,7 +40,7 @@ class HashMap(Base):
         """
         :return: exist: 1 / not:0
         """
-        return int(self.execute_command('hexists', c(name), c(key)))
+        return int(self.execute_command('hexists', c(name), c(key))) if key else 0
 
     def hsize(self, name) -> int:
         """
@@ -81,7 +82,7 @@ class HashMap(Base):
 
     def hrscan(self, name, key_start=None, key_end=None, limit=None, r='v'):
         d = self.hscan(name, key_start, key_end, limit, r)
-        return d[::-1] if d == 'v' else d
+        return d[::-1] if r == 'v' else d
 
     def hclear(self, name) -> int:
         """

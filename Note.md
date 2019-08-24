@@ -2,11 +2,8 @@
 ssdb Python 3
 
 ```
-python setup.py check
-python setup.py install
-python setup.py sdist
-twine upload dist/*
-twine upload dist/db3-0.0.1*
+python setup.py check && python setup.py install && python setup.py sdist && twine upload dist/*
+twine upload dist/db3-*
 ```
 
 https://pypi.tuna.tsinghua.edu.cn/simple/db3/

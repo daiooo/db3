@@ -1,3 +1,12 @@
+### v0.0.14
+* change: [hrscan] d='v' > r='v'
+
+### v0.0.13
+* change: [hdel] Key Empty
+
+### v0.0.12
+* change: [qslice] Empty
+
 ### v0.0.11
 * change: [hset] key > c(key)
 

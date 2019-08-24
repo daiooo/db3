@@ -37,4 +37,4 @@ class Queue(Base):
 
     def qslice(self, name, begin=0, end=-1) -> list:
         x = self.execute_command('qslice', c(name), begin, end)
-        return [pickle_loads(_) for _ in x]
+        return [pickle_loads(_) for _ in x] if isinstance(x, list) else []

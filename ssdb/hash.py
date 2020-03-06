@@ -14,7 +14,6 @@ class HashMap(Base):
             oo.remove(value)
         oo.append(value)
         value = oo
-        print(value)
         return self.execute_command('hset', c(name), c(key), pickle_dumps(value))
 
     # --- original ---
@@ -81,8 +80,9 @@ class HashMap(Base):
         return list(d.values()) if r == 'v' else d
 
     def hrscan(self, name, key_start=None, key_end=None, limit=None, r='v'):
-        d = self.hscan(name, key_start, key_end, limit, r)
-        return d[::-1] if r == 'v' else d
+        key_start, key_end = deal_start_end(key_start, key_end, mode='z')
+        d = list_to_dict(self.execute_command('hrscan', c(name), key_end, key_start, check_limit(limit)))
+        return list(d.values()) if r == 'v' else d
 
     def hclear(self, name) -> int:
         """

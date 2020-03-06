@@ -1,4 +1,9 @@
-import ssdb  # db3
+check_empty = 0
 
-db = ssdb.Client(host='d', port=10000)
-print(db.hset(1, 1, 1))
+for check_empty in [1, 0]:
+    for a in [0, '', None, 2]:
+        try:
+            assert not check_empty or a or a in [0, ''] , f'key or name is EMPTY? ({a})'
+            print(check_empty, a, 'ok')
+        except:
+            print(check_empty, a, 'e')

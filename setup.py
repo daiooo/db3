@@ -25,6 +25,7 @@ setup(
     include_package_data=True,
     keywords=['SSDB'],
     # license='BSD-2',
+    setup_requires=['pyssdb'],  # 依赖模块
     install_requires=['pyssdb'],  # 依赖模块
     packages=['ssdb'],
     classifiers=[

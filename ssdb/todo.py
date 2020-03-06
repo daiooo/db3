@@ -40,8 +40,7 @@ def deal_start_end(start, end, mode=''):
 
 
 def c(a: Union[int, str, list], check_empty: bool = True) -> str:
-    if check_empty:
-        assert a or a == 0, f'key or name is EMPTY? ({a})'
+    assert not check_empty or a or a in [0, ''], f'key or name is EMPTY? ({a})'
     if isinstance(a, list):
         a = '_'.join([str(i) for i in a])
     else:

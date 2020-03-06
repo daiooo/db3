@@ -1,3 +1,9 @@
+### v0.0.15
+* change: check key
+
+### v0.0.15
+* change: [hrscan] != hscan[::-1] (limit)
+
 ### v0.0.14
 * change: [hrscan] d='v' > r='v'
 

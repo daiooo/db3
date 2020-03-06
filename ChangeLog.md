@@ -1,4 +1,7 @@
-### v0.0.15
+### v0.0.17
+* change: add zlib
+
+### v0.0.16
 * change: check key
 
 ### v0.0.15

@@ -1,5 +1,7 @@
 # coding=utf-8
-import pickle, warnings
+import pickle
+import warnings
+import zlib
 from pyssdb import Client as PY_SSDB_Client, command_post_processing
 from typing import Union
 
@@ -21,11 +23,20 @@ class Base(PY_SSDB_Client):
 
 
 def pickle_dumps(obj):
-    return pickle.dumps(obj, pickle.HIGHEST_PROTOCOL)
+    # return pickle.dumps(obj, pickle.HIGHEST_PROTOCOL)
+    return zlib.compress(pickle.dumps(obj, pickle.HIGHEST_PROTOCOL), zlib.Z_BEST_COMPRESSION)
 
 
 def pickle_loads(obj):
-    return obj if obj is None else pickle.loads(obj)
+    if obj is None:
+        return None
+    try:
+        return pickle.loads(zlib.decompress(obj))
+    except:
+        try:
+            return pickle.loads(obj)
+        except Exception as e:
+            assert 0, str(e)
 
 
 def check_limit(limit):

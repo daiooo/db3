@@ -1,3 +1,6 @@
+### v0.0.18
+* add: qlist
+
 ### v0.0.17
 * change: add zlib
 
